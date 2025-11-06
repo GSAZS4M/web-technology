@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">
+  <img class="nav-avatar" src="images/avatar.jpg" alt="GSAZSSM avatar" />
+      <a class="nav-username" href="user.html">GSAZSSM</a>
+    </div>
+    <div class="nav-links">
+      <a href="work.html">Work</a>
+      <a href="landing.html">Landing</a>
+      <a href="#">Studio</a>
+      <a href="index.html" class="btn ghost" style="text-decoration:none;">Back to Index</a>
+    </div>
+  </nav>
+
+  <main class="work-app">
+    <header class="work-header">
+      <h1>Work Manager</h1>
+      <p class="muted">Create Works, upload images and add categories. Data is stored in browser localStorage.</p>
+    </header>
+
+    <section class="work-controls">
+      <form id="create-work-form">
+        <input id="work-name" placeholder="New Work name" required />
+        <button type="submit">Create Work</button>
+      </form>
+    </section>
+
+    <section class="works-area">
+      <aside class="works-list">
+        <h3>Your Works</h3>
+        <ul id="works-ul"></ul>
+      </aside>
+
+      <section class="work-detail">
+  <div id="no-selection" class="no-selection">Please select a Work (or create a new one)</div>
+
+        <div id="work-panel" class="hidden">
+          <h2 id="work-title"></h2>
+          <div class="work-actions">
+            <label class="file-label">Upload Image<input id="image-file" type="file" accept="image/*" /></label>
+            <input id="image-category" placeholder="Image category (optional)" />
+            <button id="add-image">Add to Work</button>
+            <button id="delete-work" class="danger">Delete Work</button>
+          </div>
+
+          <div class="image-grid" id="image-grid"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="work.js"></script>
+</body>
+</html>

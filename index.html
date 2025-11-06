@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Horizontal Parallax Slider | Codegrid</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <!-- Avatar image: place your provided photo at images/avatar.jpg -->
+            <img class="nav-avatar" src="images/avatar.jpg" alt="GSAZSSM avatar" />
+            <!-- Only the username is clickable as requested -->
+            <a class="nav-username" href="user.html">GSAZSSM</a>
+        </div>
+        <div class="nav-links">
+            <a href="work.html">Work</a>
+            <a href="landing.html">Landing</a>
+            <a href="#">Studio</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+    <div class="slider">
+        <div class="slider-track"></div> 
+    </div>
+    <!-- Inline lightbox template + styles for in-page image preview -->
+    <template id="feature-lightbox-template">
+        <div class="feature-lightbox-overlay" role="dialog" aria-modal="true">
+            <div class="feature-lightbox-content">
+                <img src="" alt="Full image" />
+            </div>
+            <button class="feature-lightbox-close" aria-label="Close">Close</button>
+        </div>
+    </template>
+    <script>
+        // global helper for showing an image in a lightbox on index page
+        function showFeatureImage(src){
+            try{
+                const tpl = document.getElementById('feature-lightbox-template');
+                const clone = tpl.content.cloneNode(true);
+                const overlay = clone.querySelector('.feature-lightbox-overlay');
+                const img = clone.querySelector('img');
+                const btn = clone.querySelector('.feature-lightbox-close');
+
+                // append overlay and button
+                document.body.appendChild(overlay);
+                document.body.appendChild(btn);
+
+                function close(){ overlay.remove(); btn.remove(); document.removeEventListener('keydown', onKey); }
+                function onKey(e){ if(e.key === 'Escape') close(); }
+                overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+                btn.addEventListener('click', close);
+                document.addEventListener('keydown', onKey);
+
+                // size image to 75% of its natural size but cap to viewport
+                img.onload = function(){
+                    try{
+                        const natW = img.naturalWidth;
+                        const natH = img.naturalHeight;
+                        if(!natW || !natH) return;
+
+                        let desiredW = Math.round(natW * 0.75);
+                        let desiredH = Math.round(natH * 0.75);
+
+                        const maxW = Math.round(window.innerWidth * 0.9);
+                        const maxH = Math.round(window.innerHeight * 0.9);
+
+                        const wRatio = maxW / desiredW;
+                        const hRatio = maxH / desiredH;
+                        const ratio = Math.min(1, wRatio, hRatio);
+
+                        img.style.width = Math.round(desiredW * ratio) + 'px';
+                        img.style.height = 'auto';
+                    }catch(e){/* ignore */}
+                };
+                img.src = src;
+            }catch(err){
+                console.error('showFeatureImage error', err);
+            }
+        }
+    </script>
+    <footer>
+        <p> 1.01</p>
+    </footer>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

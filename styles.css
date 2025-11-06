@@ -1,0 +1,352 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #fff;
+    background: #0f0f0f;
+    font-family: "DM Mono";
+}
+
+a,p {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 500;   
+}
+
+nav,footer {
+    position: absolute;
+    width: 100vw;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+nav {
+    top: 0;
+}
+
+/* nav avatar + username */
+.logo{display:flex;align-items:center;gap:0.75rem}
+.nav-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;border:1px solid rgba(255,255,255,0.06)}
+.nav-username{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:0.08rem}
+.nav-username:focus,.nav-username:hover{opacity:0.9;text-decoration:underline}
+
+footer {
+    bottom: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.slider { /* 修正类名拼写 */
+    position: relative;
+    width: 100vw;
+    height: 100svh;
+    overflow: hidden;
+    user-select: none;
+}
+.slider-track {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    flex-shrink: 0;
+    width: 350px;
+    height: 500px;
+    margin:0 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    flex: 1;
+}
+
+.slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    transform: scale(2.25);
+    user-select: none;
+}
+
+.slide-overlay {
+    position: absolute;
+    bottom: -1.75rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.slider:hover .slide-overlay { /* 修正类名拼写 */
+    opacity: calc(1 - var(--slider-moving, 1));
+}
+
+.project-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.project-arrow {
+    width: 16px;
+    height: 16px;
+}
+
+.project-arrow svg {
+    stroke: #fff;
+    stroke-width: 2;
+}
+
+/* ----------------------------- */
+/* Landing page specific styles  */
+/* ----------------------------- */
+
+:root{
+    --bg: #0f0f0f;
+    --text: #ffffff;
+    --muted: #9a9a9a;
+    --accent: #6fe3c7;
+    --container-max: 1100px;
+}
+
+/* landing page namespace */
+.landing-page {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'DM Mono', sans-serif;
+    min-height: 100vh;
+}
+
+.landing-hero{
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 2rem;
+    align-items: center;
+    padding: 6rem 2rem 4rem;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+.hero-inner h1{
+    font-size: 2.25rem;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    text-transform: none;
+}
+.hero-inner p{
+    color: var(--muted);
+    max-width: 60ch;
+    margin-bottom: 1.5rem;
+    text-transform: none;
+    font-size: 1rem;
+}
+.hero-cta{display:flex;gap:1rem}
+.btn{display:inline-block;padding:0.7rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:600}
+.btn.primary{background:var(--accent);color:#012;}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--text)}
+
+.hero-media img{width:100%;height:auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+
+.section-title{font-size:1.25rem;margin:2rem 0 1rem}
+.features{padding:2rem;max-width:var(--container-max);margin:0 auto}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1rem;border-radius:10px}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:0.75rem}
+.card h3{margin-bottom:0.5rem}
+.card p{color:var(--muted);font-size:0.95rem}
+
+.about,.contact{padding:2rem;max-width:var(--container-max);margin:0 auto;color:var(--muted)}
+
+@media (max-width: 1000px){
+    .landing-hero{grid-template-columns:1fr; padding:3rem 1rem}
+    .cards{grid-template-columns:1fr}
+    nav,footer{padding:1rem}
+}
+
+/* keep nav/footer contrast on landing */
+nav .logo a, nav .nav-links a{color:var(--text)}
+
+/* Work page styles */
+.work-app{padding:6rem 2rem 4rem;max-width:1100px;margin:0 auto}
+.work-header h1{font-size:1.5rem}
+.muted{color:var(--muted)}
+.work-controls{margin:1rem 0}
+#create-work-form{display:flex;gap:0.5rem}
+#create-work-form input{flex:1;padding:0.5rem;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text)}
+#create-work-form button{padding:0.5rem 0.9rem;border-radius:8px;border:none;background:var(--accent);color:#012;font-weight:700}
+.works-area{display:flex;gap:1.25rem;margin-top:1rem}
+.works-list{width:220px;background:rgba(255,255,255,0.02);padding:1rem;border-radius:8px}
+.works-list ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.work-item .work-select{display:block;width:100%;text-align:left;padding:0.4rem;border-radius:6px;background:transparent;border:1px solid transparent;color:var(--text)}
+.work-item .work-select:hover{background:rgba(255,255,255,0.02)}
+.work-detail{flex:1;background:rgba(255,255,255,0.01);padding:1rem;border-radius:8px;min-height:260px}
+.work-actions{display:flex;gap:0.5rem;align-items:center;margin-bottom:0.75rem}
+.file-label{display:inline-block;padding:0.5rem 0.8rem;border-radius:8px;background:rgba(255,255,255,0.02);cursor:pointer}
+.file-label input{display:none}
+.work-actions input[type="text"]{padding:0.5rem;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+.work-actions button{padding:0.45rem 0.75rem;border-radius:6px;border:none;background:rgba(255,255,255,0.04);color:var(--text);cursor:pointer}
+.work-actions .danger{background:transparent;border:1px solid rgba(255,0,0,0.12);color:#ff8888}
+.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0.75rem}
+.image-card{background:rgba(255,255,255,0.02);padding:0.5rem;border-radius:8px;display:flex;flex-direction:column;gap:0.5rem}
+.image-card .thumb{height:110px;overflow:hidden;border-radius:6px}
+.image-card img{width:100%;height:100%;object-fit:cover}
+.image-card .meta{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:var(--muted)}
+.hidden{display:none}
+
+@media (max-width:800px){
+    .works-area{flex-direction:column}
+    .works-list{width:100%}
+}
+
+/* Minimal landing override */
+.simple-landing{background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center}
+.simple-landing .center-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;padding:2rem}
+.landing-title{font-family:'Poppins', 'DM Mono', system-ui, sans-serif;font-size:4.25rem;letter-spacing:0.45rem;text-transform:uppercase}
+
+@media (max-width:600px){
+    .landing-title{font-size:2.25rem;letter-spacing:0.25rem}
+}
+
+/* Title animation: subtle fade + slide + scale */
+.landing-title{
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+    animation: titleIn 700ms cubic-bezier(.2,.9,.2,1) 120ms forwards;
+}
+
+@keyframes titleIn{
+    0%{opacity:0; transform: translateY(12px) scale(0.995);}
+    60%{opacity:1; transform: translateY(-6px) scale(1.02);}
+    100%{opacity:1; transform: translateY(0) scale(1);}
+}
+
+/* gentle hover scale to keep it alive when interacting */
+.landing-title:hover{
+    transform: translateY(0) scale(1.02);
+    transition: transform 220ms ease;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+    .landing-title{animation:none!important;transition:none!important;opacity:1;transform:none}
+}
+
+/* Enter button: gradient wipe from left-to-right + underline grow */
+.enter-btn{
+    position: relative;
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 10px;
+    overflow: hidden;
+    color: var(--text);
+    text-decoration: none;
+    font-weight:600;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: transparent;
+}
+.enter-btn .enter-text{position:relative;z-index:2}
+
+/* left-to-right color wipe using pseudo-element */
+.enter-btn::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), rgba(127, 230, 200, 0.25));
+    z-index:1;
+    transition: width 360ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* horizontal line appears below from left to right */
+.enter-btn::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 3px;
+    width: 0%;
+    background: var(--accent);
+    transition: width 380ms cubic-bezier(.2,.9,.2,1);
+}
+
+.enter-btn:hover::before{width:100%}
+.enter-btn:hover::after{width:100%}
+
+/* ensure text remains readable when overlay expands */
+.enter-btn:hover{color:#012}
+
+@media (prefers-reduced-motion: reduce){
+    .enter-btn::before, .enter-btn::after{transition:none;width:100%}
+}
+
+/* Lightbox styles moved from inline HTML to here for easier maintenance */
+.feature-lightbox-overlay{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.45);
+    z-index:9999;
+}
+.feature-lightbox-content{
+    max-width:75vw;
+    max-height:75vh;
+    padding:12px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.02);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.feature-lightbox-content img{
+    display:block;
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:6px;
+}
+.feature-lightbox-close{
+    position:absolute;
+    right:18px;
+    top:18px;
+    color:#fff;
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.08);
+    padding:6px 8px;
+    border-radius:6px;
+    cursor:pointer;
+}
